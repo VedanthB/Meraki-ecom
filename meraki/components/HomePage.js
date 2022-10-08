@@ -1,3 +1,4 @@
+import NextLink from "next/link";
 import {
   Grid,
   Card,
@@ -20,19 +21,21 @@ export default function HomePage() {
         {data.products.map((product) => (
           <Grid item md={3} key={product.name}>
             <Card className={classes.home_page_card}>
-              <CardActionArea>
-                <CardMedia
-                  component="img"
-                  image={product.image}
-                  title={product.name}
-                  className={classes.home_page_card_img}
-                />
-                <CardContent className={classes.home_page__card_details}>
-                  <Typography>{product.name}</Typography>
-                  <Typography>{product.brand}</Typography>
-                  <Typography>Rs.{product.price}</Typography>
-                </CardContent>
-              </CardActionArea>
+              <NextLink href={`/product/${product.slug}`} passHref>
+                <CardActionArea>
+                  <CardMedia
+                    component="img"
+                    image={product.image}
+                    title={product.name}
+                    className={classes.home_page_card_img}
+                  />
+                  <CardContent className={classes.home_page__card_details}>
+                    <Typography>{product.name}</Typography>
+                    <Typography>{product.brand}</Typography>
+                    <Typography>Rs.{product.price}</Typography>
+                  </CardContent>
+                </CardActionArea>
+              </NextLink>
               <CardActions className={classes.home_page_btn_container}>
                 <Button
                   size="small"

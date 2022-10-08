@@ -49,6 +49,14 @@ const useStyles = makeStyles({
     gap: "1.5rem",
   },
 
+  // Not Found
+  not_found_container: {
+    backgroundColor: "#ecfeff",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
   // home page
   home_page_card: {
     backgroundColor: "#ecfeff",
@@ -74,6 +82,18 @@ const useStyles = makeStyles({
     paddingBottom: "0.7rem",
     paddingRight: "1rem",
     paddingLeft: "1rem",
+  },
+
+  // product details page
+  product_details_page_card: {
+    backgroundColor: "#ecfeff",
+    width: "60%",
+  },
+  product_details_page_section: {
+    marginTop: "2rem",
+  },
+  product_details_page_back_btn: {
+    marginBottom: "1rem",
   },
 });
 export default useStyles;
