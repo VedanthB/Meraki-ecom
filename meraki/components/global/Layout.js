@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import Head from "next/head";
 import {
   Container,
@@ -6,15 +6,17 @@ import {
   ThemeProvider,
   CssBaseline,
 } from "@material-ui/core";
-
 import Navbar from "./Navbar";
 import Footer from "./Footer";
-import { useStyles } from "../../utils";
+import { Store, useStyles } from "../../utils";
 
 export default function Layout({ children }) {
   const classes = useStyles();
 
-  const theme = createTheme({
+  const { state } = useContext(Store);
+  const { darkMode } = state;
+
+  const lightTheme = createTheme({
     typography: {
       h1: {
         fontSize: "1.6rem",
@@ -29,6 +31,36 @@ export default function Layout({ children }) {
     },
     palette: {
       type: "light",
+      background: {
+        default: "#ffffff",
+      },
+      primary: {
+        main: "#0e7490",
+      },
+      secondary: {
+        main: "#155e75",
+      },
+    },
+  });
+
+  const darkTheme = createTheme({
+    typography: {
+      h1: {
+        fontSize: "1.6rem",
+        fontWeight: 400,
+        margin: "1rem 0",
+      },
+      h2: {
+        fontSize: "1.4rem",
+        fontWeight: 400,
+        margin: "1rem 0",
+      },
+    },
+    palette: {
+      type: "dark",
+      background: {
+        default: "#0f172a",
+      },
       primary: {
         main: "#0e7490",
       },
@@ -53,7 +85,7 @@ export default function Layout({ children }) {
         {/* <link rel="icon" href="/favicon.ico" /> */}
       </Head>
 
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
         <CssBaseline />
 
         <Navbar />

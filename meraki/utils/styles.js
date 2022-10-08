@@ -7,6 +7,7 @@ const useStyles = makeStyles({
     color: "#ecfeff",
     display: "flex",
     justifyContent: "center",
+    marginBottom: "2.5rem",
     "& a": {
       color: "#ffffff",
       marginLeft: 10,
@@ -60,6 +61,7 @@ const useStyles = makeStyles({
   // home page
   home_page_card: {
     backgroundColor: "#ecfeff",
+    color: "#0f172a",
     width: "18rem",
     height: "26rem",
   },
@@ -87,10 +89,8 @@ const useStyles = makeStyles({
   // product details page
   product_details_page_card: {
     backgroundColor: "#ecfeff",
+    color: "#0f172a",
     width: "60%",
-  },
-  product_details_page_section: {
-    marginTop: "2rem",
   },
   product_details_page_back_btn: {
     marginBottom: "1rem",
