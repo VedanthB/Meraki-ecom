@@ -84,6 +84,9 @@ const useStyles = makeStyles({
     paddingBottom: "0.7rem",
     paddingRight: "1rem",
     paddingLeft: "1rem",
+    "&:hover": {
+      backgroundColor: "#155e75",
+    },
   },
 
   // product details page
