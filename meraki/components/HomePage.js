@@ -9,15 +9,15 @@ import {
   CardActions,
   Button,
 } from "@material-ui/core";
-import { data, useStyles } from "../utils";
+import { useStyles } from "../utils";
 
-export default function HomePage() {
+export default function HomePage({ products }) {
   const classes = useStyles();
 
   return (
     <div>
       <Grid container spacing={2}>
-        {data.products.map((product) => (
+        {products.map((product) => (
           <Grid item md={3} key={product.name}>
             <Card className={classes.home_page_card}>
               <NextLink href={`/product/${product.slug}`} passHref>
