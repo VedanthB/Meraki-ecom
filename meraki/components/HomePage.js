@@ -15,7 +15,7 @@ export default function HomePage() {
 
   return (
     <div>
-      <h1>Products</h1>
+      <h2>Products</h2>
       <Grid container spacing={2}>
         {data.products.map((product) => (
           <Grid item md={3} key={product.name}>
