@@ -1,12 +1,42 @@
 import React from "react";
 import Head from "next/head";
-import { Container } from "@material-ui/core";
+import {
+  Container,
+  createTheme,
+  ThemeProvider,
+  CssBaseline,
+} from "@material-ui/core";
+
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import { useStyles } from "../../utils";
 
 export default function Layout({ children }) {
   const classes = useStyles();
+
+  const theme = createTheme({
+    typography: {
+      h1: {
+        fontSize: "1.6rem",
+        fontWeight: 400,
+        margin: "1rem 0",
+      },
+      h2: {
+        fontSize: "1.4rem",
+        fontWeight: 400,
+        margin: "1rem 0",
+      },
+    },
+    palette: {
+      type: "light",
+      primary: {
+        main: "#0e7490",
+      },
+      secondary: {
+        main: "#155e75",
+      },
+    },
+  });
 
   return (
     <div>
@@ -23,11 +53,15 @@ export default function Layout({ children }) {
         {/* <link rel="icon" href="/favicon.ico" /> */}
       </Head>
 
-      <Navbar />
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
 
-      <Container className={classes.main}>{children}</Container>
+        <Navbar />
 
-      <Footer />
+        <Container className={classes.main}>{children}</Container>
+
+        <Footer />
+      </ThemeProvider>
     </div>
   );
 }
