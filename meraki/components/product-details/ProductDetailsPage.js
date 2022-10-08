@@ -11,7 +11,7 @@ function ProductDetailsPage({ product }) {
   const classes = useStyles();
   return (
     <div>
-      <div className={classes.product_details_page_section}>
+      <div>
         <NextLink href="/" passHref>
           <Link>
             <Typography className={classes.product_details_page_back_btn}>
