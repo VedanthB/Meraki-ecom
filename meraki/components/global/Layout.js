@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import Head from "next/head";
 import {
   Container,
@@ -6,13 +6,15 @@ import {
   ThemeProvider,
   CssBaseline,
 } from "@material-ui/core";
-
 import Navbar from "./Navbar";
 import Footer from "./Footer";
-import { useStyles } from "../../utils";
+import { Store, useStyles } from "../../utils";
 
 export default function Layout({ children }) {
   const classes = useStyles();
+
+  const { state } = useContext(Store);
+  const { darkMode } = state;
 
   const theme = createTheme({
     typography: {
@@ -28,7 +30,7 @@ export default function Layout({ children }) {
       },
     },
     palette: {
-      type: "light",
+      type: darkMode ? "dark" : "light",
       primary: {
         main: "#0e7490",
       },

@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { useEffect } from "react";
 import "../styles/globals.css";
+import { StoreProvider } from "../utils";
 
 function MyApp({ Component, pageProps }) {
   useEffect(() => {
@@ -10,7 +11,11 @@ function MyApp({ Component, pageProps }) {
     }
   }, []);
 
-  return <Component {...pageProps} />;
+  return (
+    <StoreProvider>
+      <Component {...pageProps} />
+    </StoreProvider>
+  );
 }
 
 export default MyApp;
