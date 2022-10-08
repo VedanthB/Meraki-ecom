@@ -1,10 +1,10 @@
-import { Layout } from "../components";
+import { HomePage, Layout } from "../components";
 
 export default function Home() {
   return (
     <div>
       <Layout>
-        <h1>Meraki</h1>
+        <HomePage />
       </Layout>
     </div>
   );
