@@ -6,6 +6,7 @@ import ProductDetailsPage from "./product-details/ProductDetailsPage";
 import CartItemsTable from "./cart-page/CartItemsTable";
 import CartDetailsCard from "./cart-page/CartDetailsCard";
 import EmptyCart from "./cart-page/EmptyCart";
+import LoginPage from "./LoginPage";
 
 export {
   Layout,
@@ -15,4 +16,5 @@ export {
   CartItemsTable,
   CartDetailsCard,
   EmptyCart,
+  LoginPage,
 };

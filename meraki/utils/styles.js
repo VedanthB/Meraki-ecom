@@ -123,5 +123,18 @@ const useStyles = makeStyles({
   cart_details_card_heading: {
     fontSize: "1.3rem",
   },
+
+  // login page
+  login_form: {
+    // backgroundColor: "#ecfeff",
+    // color: "#0f172a",
+    width: "60%",
+    border: "1px solid",
+    padding: "2rem",
+    borderRadius: "1rem",
+  },
+  login_heading: {
+    textAlign: "center",
+  },
 });
 export default useStyles;
