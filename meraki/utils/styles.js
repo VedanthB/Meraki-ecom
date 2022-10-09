@@ -2,6 +2,11 @@ import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles({
   // shared
+  cursor_pointer: {
+    cursor: "pointer",
+  },
+
+  // layout
   navbar: {
     backgroundColor: "#0e7490",
     color: "#ecfeff",
@@ -104,6 +109,21 @@ const useStyles = makeStyles({
   },
   product_details_page_back_btn: {
     marginBottom: "1rem",
+  },
+
+  // cart page
+  cart_page_icon: {
+    fontSize: "1.2rem",
+    color: "#0e7490",
+  },
+  cart_details_card: {
+    marginLeft: "2rem",
+    color: "#0f172a",
+    backgroundColor: "#ecfeff",
+    height: "11rem",
+  },
+  cart_details_card_heading: {
+    fontSize: "1.3rem",
   },
 });
 export default useStyles;
