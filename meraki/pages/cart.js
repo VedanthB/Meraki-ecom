@@ -1,10 +1,11 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import NextLink from "next/link";
 import { Grid, Typography } from "@material-ui/core";
+import dynamic from "next/dynamic";
 import { useStore } from "../context";
 import { CartDetailsCard, CartItemsTable, Layout } from "../components";
 
-export default function CartScreen() {
+function CartScreen() {
   const { state } = useStore();
 
   const {
@@ -26,7 +27,7 @@ export default function CartScreen() {
             <Grid item md={9} xs={12}>
               <CartItemsTable cartItems={cartItems} />
             </Grid>
-            <Grid md={3} xs={12}>
+            <Grid item md={3} xs={12}>
               <CartDetailsCard cartItems={cartItems} />
             </Grid>
           </Grid>
@@ -35,3 +36,5 @@ export default function CartScreen() {
     </Layout>
   );
 }
+
+export default dynamic(() => Promise.resolve(CartScreen), { ssr: false });

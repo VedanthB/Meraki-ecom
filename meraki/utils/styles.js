@@ -117,10 +117,8 @@ const useStyles = makeStyles({
     color: "#0e7490",
   },
   cart_details_card: {
-    marginLeft: "2rem",
     color: "#0f172a",
     backgroundColor: "#ecfeff",
-    height: "11rem",
   },
   cart_details_card_heading: {
     fontSize: "1.3rem",
