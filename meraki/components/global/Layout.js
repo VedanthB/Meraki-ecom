@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import Head from "next/head";
 import {
   Container,
@@ -8,12 +8,13 @@ import {
 } from "@material-ui/core";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
-import { Store, useStyles } from "../../utils";
+import { useStyles } from "../../utils";
+import { useStore } from "../../context";
 
 export default function Layout({ children }) {
   const classes = useStyles();
 
-  const { state } = useContext(Store);
+  const { state } = useStore();
   const { darkMode } = state;
 
   const lightTheme = createTheme({

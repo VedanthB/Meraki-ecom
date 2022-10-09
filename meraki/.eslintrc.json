@@ -26,7 +26,24 @@
         "extensions": [".js", ".jsx"]
       }
     ],
-    "arrow-body-style": ["off"]
+    "arrow-body-style": ["off"],
+    "no-underscore-dangle": [
+      "off",
+      {
+        "allow": ["__REDUX_DEVTOOLS_EXTENSION_COMPOSE__"],
+        "allowAfterThis": false,
+        "allowAfterSuper": false,
+        "allowAfterThisConstructor": false,
+        "enforceInMethodNames": true,
+        "allowFunctionParams": true
+      }
+    ],
+    "no-unneeded-ternary": [
+      "off",
+      {
+        "defaultAssignment": false
+      }
+    ]
   },
   "settings": {
     "react": {

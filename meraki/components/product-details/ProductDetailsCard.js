@@ -1,4 +1,8 @@
+/* eslint-disable no-shadow */
+/* eslint-disable no-alert */
 import React from "react";
+import axios from "axios";
+import { useRouter } from "next/router";
 import {
   Grid,
   List,
@@ -8,9 +12,24 @@ import {
   Button,
 } from "@material-ui/core";
 import { useStyles } from "../../utils";
+import { useStore } from "../../context";
 
 function ProductDetailsCard({ product }) {
+  const router = useRouter();
   const classes = useStyles();
+  const { state, dispatch } = useStore();
+
+  const addToCartHandler = async (product) => {
+    const existItem = state.cart.cartItems.find((x) => x._id === product._id);
+    const quantity = existItem ? existItem.quantity + 1 : 1;
+    const { data } = await axios.get(`/api/products/${product._id}`);
+    if (data.countInStock < quantity) {
+      window.alert("Sorry. Product is out of stock");
+      return;
+    }
+    dispatch({ type: "CART_ADD_ITEM", payload: { ...product, quantity } });
+    router.push("/cart");
+  };
   return (
     <Card className={classes.product_details_page_card}>
       <List>
@@ -27,7 +46,12 @@ function ProductDetailsCard({ product }) {
           </Grid>
         </ListItem>
         <ListItem>
-          <Button fullWidth variant="contained" color="primary">
+          <Button
+            fullWidth
+            variant="contained"
+            color="primary"
+            onClick={() => addToCartHandler(product)}
+          >
             Add to cart
           </Button>
         </ListItem>
