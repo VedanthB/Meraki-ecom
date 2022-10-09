@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { useEffect } from "react";
+import { StoreProvider } from "../context";
 import "../styles/globals.css";
-import { StoreProvider } from "../utils";
 
 function MyApp({ Component, pageProps }) {
   useEffect(() => {

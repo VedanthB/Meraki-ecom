@@ -1,15 +1,16 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useContext } from "react";
+import React from "react";
 import NextLink from "next/link";
 import Cookies from "js-cookie";
-import { AppBar, Toolbar, Typography, Switch } from "@material-ui/core";
-import { Store, useStyles } from "../../utils";
+import { AppBar, Toolbar, Typography, Switch, Badge } from "@material-ui/core";
+import { useStyles } from "../../utils";
+import { useStore } from "../../context";
 
 export default function NavBar() {
   const classes = useStyles();
 
-  const { state, dispatch } = useContext(Store);
-  const { darkMode } = state;
+  const { state, dispatch } = useStore();
+  const { darkMode, cart } = state;
 
   const darkModeChangeHandler = () => {
     dispatch({ type: darkMode ? "DARK_MODE_OFF" : "DARK_MODE_ON" });
@@ -29,9 +30,17 @@ export default function NavBar() {
         <div className={classes.nav_link_container}>
           <Switch checked={darkMode} onChange={darkModeChangeHandler} />
           <NextLink href="/cart" passHref>
-            <a className={classes.nav_link}>
-              <i className="fa-solid fa-cart-shopping" />
-            </a>
+            {cart.cartItems.length > 0 ? (
+              <Badge color="secondary" badgeContent={cart.cartItems.length}>
+                <a className={classes.nav_link}>
+                  <i className="fa-solid fa-cart-shopping" />
+                </a>
+              </Badge>
+            ) : (
+              <a className={classes.nav_link}>
+                <i className="fa-solid fa-cart-shopping" />
+              </a>
+            )}
           </NextLink>
           <NextLink href="/login" passHref>
             <a className={classes.nav_btn}>Login</a>

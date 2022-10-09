@@ -1,4 +1,6 @@
+/* eslint-disable no-alert */
 import NextLink from "next/link";
+
 import {
   Grid,
   Card,
@@ -9,10 +11,23 @@ import {
   CardActions,
   Button,
 } from "@material-ui/core";
+import axios from "axios";
 import { useStyles } from "../utils";
+import { useStore } from "../context";
 
 export default function HomePage({ products }) {
   const classes = useStyles();
+  const { dispatch } = useStore();
+
+  const addToCartHandler = async (product) => {
+    const { data } = await axios.get(`/api/products/${product._id}`);
+
+    if (data.countInStock <= 0) {
+      window.alert("Sorry. Product is out of stock");
+      return;
+    }
+    dispatch({ type: "CART_ADD_ITEM", payload: { ...product, quantity: 1 } });
+  };
 
   return (
     <div>
@@ -40,6 +55,7 @@ export default function HomePage({ products }) {
                   size="small"
                   color="primary"
                   className={classes.home_page_card_btn}
+                  onClick={() => addToCartHandler(product)}
                 >
                   Add to cart
                 </Button>

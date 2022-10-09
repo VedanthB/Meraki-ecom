@@ -7,6 +7,8 @@ const useStyles = makeStyles({
     color: "#ecfeff",
     display: "flex",
     justifyContent: "center",
+    position: "fixed",
+    height: "4rem",
     marginBottom: "2.5rem",
     "& a": {
       color: "#ffffff",
@@ -18,10 +20,12 @@ const useStyles = makeStyles({
   },
   nav_link_container: {
     display: "flex",
-    gap: "0.7rem",
+    marginTop: "0.3rem",
+    alignItems: "center",
+    gap: "0.8rem",
   },
   nav_link: {
-    fontSize: "1.5rem",
+    fontSize: "1.6rem",
   },
   nav_btn: {
     fontSize: "1rem",
@@ -36,12 +40,15 @@ const useStyles = makeStyles({
     flexGrow: 1,
   },
   main: {
+    position: "relative",
+    top: "4rem",
+    paddingTop: "1.5rem",
     minHeight: "85vh",
   },
   footer: {
     backgroundColor: "#0e7490",
     height: "3rem",
-    marginTop: "2.5rem",
+    marginTop: "6rem",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -63,7 +70,7 @@ const useStyles = makeStyles({
     backgroundColor: "#ecfeff",
     color: "#0f172a",
     width: "18rem",
-    height: "26rem",
+    height: "25.5rem",
   },
   home_page_card_img: {
     width: "100%",
