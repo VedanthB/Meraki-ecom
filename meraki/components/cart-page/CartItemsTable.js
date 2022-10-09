@@ -1,7 +1,8 @@
+/* eslint-disable no-alert */
 import React from "react";
 import NextLink from "next/link";
 import Image from "next/image";
-
+import axios from "axios";
 import {
   TableContainer,
   Table,
@@ -12,20 +13,35 @@ import {
   TableCell,
   Select,
   MenuItem,
+  Button,
 } from "@material-ui/core";
 import { useStyles } from "../../utils";
+import { useStore } from "../../context";
 
 function CartItemsTable({ cartItems }) {
+  const { dispatch } = useStore();
+
+  const updateCartHandler = async (item, quantity) => {
+    const { data } = await axios.get(`/api/products/${item._id}`);
+    if (data.countInStock < quantity) {
+      window.alert("Sorry. Product is out of stock");
+      return;
+    }
+    dispatch({ type: "CART_ADD_ITEM", payload: { ...item, quantity } });
+  };
+  const removeItemHandler = (item) => {
+    dispatch({ type: "CART_REMOVE_ITEM", payload: item });
+  };
+
   const classes = useStyles();
   return (
     <TableContainer>
       <Table>
         <TableHead>
           <TableRow>
-            <TableCell>Image</TableCell>
-            <TableCell>Name</TableCell>
-            <TableCell align="right">Quantity</TableCell>
-            <TableCell align="right">Price</TableCell>
+            <TableCell>Item</TableCell>
+            <TableCell align="center">Quantity</TableCell>
+            <TableCell align="center">Price</TableCell>
             <TableCell />
           </TableRow>
         </TableHead>
@@ -34,22 +50,28 @@ function CartItemsTable({ cartItems }) {
             <TableRow key={item._id}>
               <TableCell className={classes.cursor_pointer}>
                 <NextLink href={`/product/${item.slug}`} passHref>
-                  <Image
-                    src={item.image}
-                    alt={item.name}
-                    width={60}
-                    height={60}
-                  />
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "1rem",
+                    }}
+                  >
+                    <Image
+                      src={item.image}
+                      alt={item.name}
+                      width={60}
+                      height={60}
+                    />
+                    <Typography>{item.name}</Typography>
+                  </div>
                 </NextLink>
               </TableCell>
-
-              <TableCell className={classes.cursor_pointer}>
-                <NextLink href={`/product/${item.slug}`} passHref>
-                  <Typography>{item.name}</Typography>
-                </NextLink>
-              </TableCell>
-              <TableCell align="right">
-                <Select value={item.quantity}>
+              <TableCell align="center">
+                <Select
+                  value={item.quantity}
+                  onChange={(e) => updateCartHandler(item, e.target.value)}
+                >
                   {[...Array(item.countInStock).keys()].map((x) => (
                     <MenuItem key={x + 1} value={x + 1}>
                       {x + 1}
@@ -57,9 +79,14 @@ function CartItemsTable({ cartItems }) {
                   ))}
                 </Select>
               </TableCell>
-              <TableCell align="right">Rs.{item.price}</TableCell>
-              <TableCell align="right" className={classes.cart_page_icon}>
-                <i className="fa-solid fa-trash-can" />
+              <TableCell align="center">Rs.{item.price}</TableCell>
+              <TableCell align="center">
+                <Button
+                  onClick={() => removeItemHandler(item)}
+                  className={classes.cart_page_icon}
+                >
+                  <i className="fa-solid fa-trash-can" />
+                </Button>
               </TableCell>
             </TableRow>
           ))}
