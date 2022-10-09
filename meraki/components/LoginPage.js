@@ -1,6 +1,8 @@
+/* eslint-disable no-alert */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable react/no-unescaped-entities */
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
 import {
   List,
   ListItem,
@@ -14,6 +16,22 @@ import { useStyles } from "../utils";
 
 function LoginPage() {
   const classes = useStyles();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    try {
+      // eslint-disable-next-line no-unused-vars
+      const { data } = await axios.post("/api/users/login", {
+        email,
+        password,
+      });
+      alert("succss login");
+    } catch (err) {
+      alert(err.response.data ? err.response.data.message : err.message);
+    }
+  };
 
   return (
     <div
@@ -24,7 +42,7 @@ function LoginPage() {
         alignItems: "center",
       }}
     >
-      <form className={classes.login_form}>
+      <form className={classes.login_form} onSubmit={submitHandler}>
         <Typography
           component="h1"
           variant="h1"
@@ -40,6 +58,7 @@ function LoginPage() {
               id="email"
               label="Email"
               inputProps={{ type: "email" }}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </ListItem>
           <ListItem>
@@ -49,6 +68,7 @@ function LoginPage() {
               id="password"
               label="Password"
               inputProps={{ type: "password" }}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </ListItem>
           <ListItem>

@@ -48,7 +48,7 @@ const useStyles = makeStyles({
     position: "relative",
     top: "4rem",
     paddingTop: "1.5rem",
-    minHeight: "85vh",
+    minHeight: "90vh",
   },
   footer: {
     backgroundColor: "#0e7490",
