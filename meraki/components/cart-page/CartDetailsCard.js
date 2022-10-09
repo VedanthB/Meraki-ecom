@@ -1,9 +1,15 @@
 import React from "react";
+import { useRouter } from "next/router";
 import { Button, Card, List, ListItem, Typography } from "@material-ui/core";
 import { useStyles } from "../../utils";
 
 function CartDetailsCard({ cartItems }) {
   const classes = useStyles();
+  const router = useRouter();
+
+  const checkoutHandler = () => {
+    router.push("/shipping");
+  };
 
   return (
     <Card className={classes.cart_details_card}>
@@ -20,7 +26,12 @@ function CartDetailsCard({ cartItems }) {
           </Typography>
         </ListItem>
         <ListItem>
-          <Button variant="contained" color="primary" fullWidth>
+          <Button
+            onClick={checkoutHandler}
+            variant="contained"
+            color="primary"
+            fullWidth
+          >
             Check Out
           </Button>
         </ListItem>
