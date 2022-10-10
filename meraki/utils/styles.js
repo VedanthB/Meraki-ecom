@@ -5,6 +5,9 @@ const useStyles = makeStyles({
   cursor_pointer: {
     cursor: "pointer",
   },
+  transparent_backgroud: {
+    backgroundColor: "transparent",
+  },
 
   // layout
   navbar: {
@@ -151,11 +154,6 @@ const useStyles = makeStyles({
   },
   auth_heading: {
     textAlign: "center",
-  },
-
-  // shipping
-  dark_checkout_wizard: {
-    background: "#0f172a",
   },
 });
 export default useStyles;

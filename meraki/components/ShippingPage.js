@@ -28,6 +28,7 @@ export default function ShippingPage() {
     userInfo,
     cart: { shippingAddress },
   } = state;
+
   useEffect(() => {
     if (!userInfo) {
       router.push("/login?redirect=/shipping");
@@ -38,12 +39,15 @@ export default function ShippingPage() {
     setValue("postalCode", shippingAddress?.postalCode);
     setValue("country", shippingAddress?.country);
   }, []);
+
   const classes = useStyles();
+
   const submitHandler = ({ fullName, address, city, postalCode, country }) => {
     dispatch({
       type: "SAVE_SHIPPING_ADDRESS",
       payload: { fullName, address, city, postalCode, country },
     });
+
     Cookies.set(
       "shippingAddress",
       JSON.stringify({
@@ -54,6 +58,7 @@ export default function ShippingPage() {
         country,
       }),
     );
+
     router.push("/payment");
   };
   return (
