@@ -16,13 +16,16 @@ function PlaceOrder() {
   const router = useRouter();
   const { state } = useStore();
   const {
-    cart: { paymentMethod },
+    cart: { cartItems, paymentMethod },
     shippingAddress,
   } = state;
 
   useEffect(() => {
     if (!paymentMethod) {
       router.push("/payment");
+    }
+    if (cartItems.length === 0) {
+      router.push("/cart");
     }
   }, []);
 
