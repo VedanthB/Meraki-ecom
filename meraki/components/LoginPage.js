@@ -61,7 +61,7 @@ function LoginPage() {
         <Typography
           component="h1"
           variant="h1"
-          className={classes.login_heading}
+          className={classes.auth_heading}
         >
           Login
         </Typography>

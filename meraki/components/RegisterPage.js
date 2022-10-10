@@ -61,7 +61,11 @@ function RegisterPage() {
       }}
     >
       <form onSubmit={submitHandler} className={classes.form}>
-        <Typography component="h1" variant="h1">
+        <Typography
+          component="h1"
+          variant="h1"
+          className={classes.auth_heading}
+        >
           Register
         </Typography>
         <List>

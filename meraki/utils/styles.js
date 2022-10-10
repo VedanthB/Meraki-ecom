@@ -149,7 +149,7 @@ const useStyles = makeStyles({
     padding: "2rem",
     borderRadius: "1rem",
   },
-  login_heading: {
+  auth_heading: {
     textAlign: "center",
   },
 });
