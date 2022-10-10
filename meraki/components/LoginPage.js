@@ -1,8 +1,10 @@
 /* eslint-disable no-alert */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable react/no-unescaped-entities */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useRouter } from "next/router";
+import Cookies from "js-cookie";
 import {
   List,
   ListItem,
@@ -13,21 +15,34 @@ import {
 } from "@material-ui/core";
 import NextLink from "next/link";
 import { useStyles } from "../utils";
+import { useStore } from "../context";
 
 function LoginPage() {
   const classes = useStyles();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const router = useRouter();
+  const { redirect } = router.query; // login?redirect=/shipping
+  const { state, dispatch } = useStore();
+  const { userInfo } = state;
+
+  useEffect(() => {
+    if (userInfo) {
+      router.push("/");
+    }
+  }, []);
+
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
-      // eslint-disable-next-line no-unused-vars
       const { data } = await axios.post("/api/users/login", {
         email,
         password,
       });
-      alert("succss login");
+      dispatch({ type: "USER_LOGIN", payload: data });
+      Cookies.set("userInfo", JSON.stringify(data));
+      router.push(redirect || "/");
     } catch (err) {
       alert(err.response.data ? err.response.data.message : err.message);
     }
