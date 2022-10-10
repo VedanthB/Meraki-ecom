@@ -44,11 +44,27 @@ const useStyles = makeStyles({
   grow: {
     flexGrow: 1,
   },
+  nav_menu: {
+    backgroundColor: "#0e7490",
+  },
+  nav_button: {
+    fontSize: "1.2rem",
+    backgroundColor: "#155e75",
+    padding: "0.2rem 0.7rem 0.2rem 0.7rem",
+    marginLeft: "1rem",
+    borderRadius: "0.3rem",
+    color: "#ffffff",
+    textTransform: "initial",
+    "&:hover": {
+      backgroundColor: "#164e63",
+    },
+  },
+
   main: {
     position: "relative",
     top: "4rem",
     paddingTop: "1.5rem",
-    minHeight: "85vh",
+    minHeight: "90vh",
   },
   footer: {
     backgroundColor: "#0e7490",
@@ -122,6 +138,19 @@ const useStyles = makeStyles({
   },
   cart_details_card_heading: {
     fontSize: "1.3rem",
+  },
+
+  // login and register
+  form: {
+    // backgroundColor: "#ecfeff",
+    // color: "#0f172a",
+    width: "60%",
+    border: "1px solid",
+    padding: "2rem",
+    borderRadius: "1rem",
+  },
+  auth_heading: {
+    textAlign: "center",
   },
 });
 export default useStyles;

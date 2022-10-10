@@ -1,16 +1,42 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from "react";
+import React, { useState } from "react";
 import NextLink from "next/link";
+import { useRouter } from "next/router";
 import Cookies from "js-cookie";
-import { AppBar, Toolbar, Typography, Switch, Badge } from "@material-ui/core";
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  Switch,
+  Badge,
+  Button,
+  Menu,
+  MenuItem,
+} from "@material-ui/core";
 import { useStyles } from "../../utils";
 import { useStore } from "../../context";
 
 export default function NavBar() {
   const classes = useStyles();
+  const router = useRouter();
 
   const { state, dispatch } = useStore();
-  const { darkMode, cart } = state;
+  const { darkMode, cart, userInfo } = state;
+
+  const [anchorEl, setAnchorEl] = useState(null);
+  const loginClickHandler = (e) => {
+    setAnchorEl(e.currentTarget);
+  };
+  const loginMenuCloseHandler = () => {
+    setAnchorEl(null);
+  };
+  const logoutClickHandler = () => {
+    setAnchorEl(null);
+    dispatch({ type: "USER_LOGOUT" });
+    Cookies.remove("userInfo");
+    Cookies.remove("cartItems");
+    router.push("/");
+  };
 
   const darkModeChangeHandler = () => {
     dispatch({ type: darkMode ? "DARK_MODE_OFF" : "DARK_MODE_ON" });
@@ -42,9 +68,34 @@ export default function NavBar() {
               </a>
             )}
           </NextLink>
-          <NextLink href="/login" passHref>
-            <a className={classes.nav_btn}>Login</a>
-          </NextLink>
+          {userInfo ? (
+            <>
+              <Button
+                aria-controls="simple-menu"
+                aria-haspopup="true"
+                onClick={loginClickHandler}
+                className={classes.nav_button}
+              >
+                {userInfo.name}
+              </Button>
+              <Menu
+                id="simple-menu"
+                anchorEl={anchorEl}
+                keepMounted
+                open={Boolean(anchorEl)}
+                onClose={loginMenuCloseHandler}
+                backgroundColor="black"
+              >
+                <MenuItem onClick={loginMenuCloseHandler}>Profile</MenuItem>
+                <MenuItem onClick={loginMenuCloseHandler}>My account</MenuItem>
+                <MenuItem onClick={logoutClickHandler}>Logout</MenuItem>
+              </Menu>
+            </>
+          ) : (
+            <NextLink href="/login" passHref>
+              <a className={classes.nav_button}>Login</a>
+            </NextLink>
+          )}
         </div>
       </Toolbar>
     </AppBar>
