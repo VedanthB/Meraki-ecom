@@ -140,8 +140,8 @@ const useStyles = makeStyles({
     fontSize: "1.3rem",
   },
 
-  // login page
-  login_form: {
+  // login and register
+  form: {
     // backgroundColor: "#ecfeff",
     // color: "#0f172a",
     width: "60%",
