@@ -1,6 +1,7 @@
 import React from "react";
 import { useRouter } from "next/router";
 import { useStore } from "../context";
+import { Layout, ShippingPage } from "../components";
 
 export default function Shipping() {
   const router = useRouter();
@@ -10,5 +11,9 @@ export default function Shipping() {
     router.push("/login?redirect=/shipping");
   }
 
-  return <div>Shipping</div>;
+  return (
+    <Layout>
+      <ShippingPage />
+    </Layout>
+  );
 }
