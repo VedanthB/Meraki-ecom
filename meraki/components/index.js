@@ -9,6 +9,7 @@ import EmptyCart from "./cart-page/EmptyCart";
 import LoginPage from "./LoginPage";
 import RegisterPage from "./RegisterPage";
 import ShippingPage from "./ShippingPage";
+import PaymentPage from "./PaymentPage";
 
 export {
   Layout,
@@ -21,4 +22,5 @@ export {
   LoginPage,
   RegisterPage,
   ShippingPage,
+  PaymentPage,
 };
