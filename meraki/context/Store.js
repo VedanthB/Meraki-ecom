@@ -19,6 +19,10 @@ const initialState = {
   shippingAddress: Cookies.get("shippingAddress")
     ? JSON.parse(Cookies.get("shippingAddress"))
     : {},
+
+  paymentMethod: Cookies.get("paymentMethod")
+    ? Cookies.get("paymentMethod")
+    : "",
 };
 
 function reducer(state, action) {
