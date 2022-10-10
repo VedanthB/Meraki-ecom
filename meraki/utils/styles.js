@@ -155,5 +155,20 @@ const useStyles = makeStyles({
   auth_heading: {
     textAlign: "center",
   },
+
+  // place order screen
+  place_order_cards: {
+    marginTop: "1.5rem",
+    padding: "1rem",
+    color: "#0f172a",
+    backgroundColor: "#ecfeff",
+  },
+
+  place_order_cards_text: {
+    fontSize: "1.5rem",
+  },
+  place_order_table_headings: {
+    color: "#0f172a",
+  },
 });
 export default useStyles;
