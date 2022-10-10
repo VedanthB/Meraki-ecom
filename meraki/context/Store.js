@@ -15,6 +15,10 @@ const initialState = {
   userInfo: Cookies.get("userInfo")
     ? JSON.parse(Cookies.get("userInfo"))
     : null,
+
+  shippingAddress: Cookies.get("shippingAddress")
+    ? JSON.parse(Cookies.get("shippingAddress"))
+    : {},
 };
 
 function reducer(state, action) {
