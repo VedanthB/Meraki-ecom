@@ -17,7 +17,9 @@ function ShippingDetails({ shippingAddress, isDelivered, deliveredAt }) {
         </ListItem>
         <ListItem>
           Status:{" "}
-          {isDelivered ? `delivered at ${deliveredAt}` : "not delivered"}
+          {isDelivered
+            ? `delivered on ${deliveredAt.substring(0, 10)}`
+            : "not delivered"}
         </ListItem>
       </List>
     </Card>

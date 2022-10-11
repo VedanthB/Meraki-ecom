@@ -55,12 +55,10 @@ function OrdersTable({ orders }) {
                 Rs.{order.totalPrice}
               </TableCell>
               <TableCell className={classes.table_headings} align="center">
-                {order.isPaid ? `paid at ${order.paidAt}` : "not paid"}
+                {order.isPaid ? "paid" : "not paid"}
               </TableCell>
               <TableCell className={classes.table_headings} align="center">
-                {order.isDelivered
-                  ? `delivered at ${order.deliveredAt}`
-                  : "not delivered"}
+                {order.isDelivered ? "delivered" : "not delivered"}
               </TableCell>
               <TableCell align="center">
                 <NextLink href={`/order/${order._id}`} passHref>

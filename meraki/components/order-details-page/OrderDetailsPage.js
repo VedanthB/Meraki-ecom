@@ -1,3 +1,7 @@
+/* eslint-disable react/jsx-no-bind */
+/* eslint-disable no-shadow */
+/* eslint-disable func-names */
+/* eslint-disable prefer-arrow-callback */
 /* eslint-disable no-nested-ternary */
 /* eslint-disable consistent-return */
 
@@ -13,6 +17,7 @@ import {
   ListItem,
   Typography,
 } from "@material-ui/core";
+import { useSnackbar } from "notistack";
 import { getError, useStyles } from "../../utils";
 import { useStore } from "../../context";
 import OrderDetailsTable from "./OrderDetailsTable";
@@ -28,6 +33,27 @@ function reducer(state, action) {
       return { ...state, loading: false, order: action.payload, error: "" };
     case "FETCH_FAIL":
       return { ...state, loading: false, error: action.payload };
+    case "PAY_REQUEST":
+      return { ...state, loadingPay: true };
+    case "PAY_SUCCESS":
+      return { ...state, loadingPay: false, successPay: true };
+    case "PAY_FAIL":
+      return { ...state, loadingPay: false, errorPay: action.payload };
+    case "PAY_RESET":
+      return { ...state, loadingPay: false, successPay: false, errorPay: "" };
+    case "DELIVER_REQUEST":
+      return { ...state, loadingDeliver: true };
+    case "DELIVER_SUCCESS":
+      return { ...state, loadingDeliver: false, successDeliver: true };
+    case "DELIVER_FAIL":
+      return { ...state, loadingDeliver: false, errorDeliver: action.payload };
+    case "DELIVER_RESET":
+      return {
+        ...state,
+        loadingDeliver: false,
+        successDeliver: false,
+        errorDeliver: "",
+      };
     default:
       return state;
   }
@@ -36,33 +62,87 @@ function reducer(state, action) {
 function OrderDetailsPage({ params }) {
   const orderId = params?.id;
   const [{ isPending }, paypalDispatch] = usePayPalScriptReducer();
+  const { enqueueSnackbar } = useSnackbar();
   const classes = useStyles();
   const router = useRouter();
   const { state } = useStore();
   const { userInfo } = state;
 
-  const [{ loading, error, order, successPay }, dispatch] = useReducer(
-    reducer,
-    {
-      loading: true,
-      order: {},
-      error: "",
-    },
-  );
+  const [
+    { loading, error, order, successPay, loadingDeliver, successDeliver },
+    dispatch,
+  ] = useReducer(reducer, {
+    loading: true,
+    order: {},
+    error: "",
+  });
 
   const {
     shippingAddress,
     paymentMethod,
     orderItems,
-    itemsPrice,
-    taxPrice,
-    shippingPrice,
     totalPrice,
     isPaid,
     paidAt,
     isDelivered,
     deliveredAt,
   } = order;
+
+  function createOrder(data, actions) {
+    return actions.order
+      .create({
+        purchase_units: [
+          {
+            amount: { value: totalPrice },
+          },
+        ],
+      })
+      .then((orderID) => {
+        return orderID;
+      });
+  }
+
+  function onApprove(data, actions) {
+    return actions.order.capture().then(async function (details) {
+      try {
+        dispatch({ type: "PAY_REQUEST" });
+        const { data } = await axios.put(
+          `/api/orders/${order._id}/pay`,
+          details,
+          {
+            headers: { authorization: `Bearer ${userInfo.token}` },
+          },
+        );
+        dispatch({ type: "PAY_SUCCESS", payload: data });
+        enqueueSnackbar("Order is paid", { variant: "success" });
+      } catch (err) {
+        dispatch({ type: "PAY_FAIL", payload: getError(err) });
+        enqueueSnackbar(getError(err), { variant: "error" });
+      }
+    });
+  }
+
+  function onError(err) {
+    enqueueSnackbar(getError(err), { variant: "error" });
+  }
+
+  async function deliverOrderHandler() {
+    try {
+      dispatch({ type: "DELIVER_REQUEST" });
+      const { data } = await axios.put(
+        `/api/orders/${order._id}/deliver`,
+        {},
+        {
+          headers: { authorization: `Bearer ${userInfo.token}` },
+        },
+      );
+      dispatch({ type: "DELIVER_SUCCESS", payload: data });
+      enqueueSnackbar("Order is delivered", { variant: "success" });
+    } catch (err) {
+      dispatch({ type: "DELIVER_FAIL", payload: getError(err) });
+      enqueueSnackbar(getError(err), { variant: "error" });
+    }
+  }
 
   useEffect(() => {
     if (!userInfo) {
@@ -79,10 +159,18 @@ function OrderDetailsPage({ params }) {
         dispatch({ type: "FETCH_FAIL", payload: getError(err) });
       }
     };
-    if (!order._id || successPay || (order._id && order._id !== orderId)) {
+    if (
+      !order._id ||
+      successPay ||
+      successDeliver ||
+      (order._id && order._id !== orderId)
+    ) {
       fetchOrder();
       if (successPay) {
         dispatch({ type: "PAY_RESET" });
+      }
+      if (successDeliver) {
+        dispatch({ type: "DELIVER_RESET" });
       }
     } else {
       const loadPaypalScript = async () => {
@@ -100,7 +188,7 @@ function OrderDetailsPage({ params }) {
       };
       loadPaypalScript();
     }
-  }, [order, successPay]);
+  }, [order, successPay, successDeliver]);
 
   return (
     <div>
@@ -137,13 +225,13 @@ function OrderDetailsPage({ params }) {
           </Grid>
           <Grid item md={3} xs={12}>
             <OrderSummary
-              itemsPrice={itemsPrice}
-              taxPrice={taxPrice}
-              shippingPrice={shippingPrice}
-              totalPrice={totalPrice}
-              isPaid={isPaid}
+              order={order}
               isPending={isPending}
-              userInfo={userInfo}
+              createOrder={createOrder}
+              onApprove={onApprove}
+              onError={onError}
+              loadingDeliver={loadingDeliver}
+              deliverOrderHandler={deliverOrderHandler}
             />
           </Grid>
         </Grid>
