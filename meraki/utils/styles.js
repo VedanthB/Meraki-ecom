@@ -8,6 +8,9 @@ const useStyles = makeStyles({
   transparent_backgroud: {
     backgroundColor: "transparent",
   },
+  table_headings: {
+    color: "#0f172a",
+  },
 
   // layout
   navbar: {
@@ -165,10 +168,22 @@ const useStyles = makeStyles({
   },
 
   place_order_cards_text: {
-    fontSize: "1.5rem",
+    fontSize: "1.3rem",
   },
-  place_order_table_headings: {
+
+  // order details page
+  order_detail_cards: {
+    marginTop: "1.5rem",
+    padding: "1rem",
     color: "#0f172a",
+    backgroundColor: "#ecfeff",
+  },
+  order_details_heading: {
+    fontSize: "1.3rem",
+  },
+  order_id: {
+    fontSize: "1.3rem",
+    marginTop: "1rem",
   },
 });
 export default useStyles;
