@@ -63,7 +63,7 @@ function Profile() {
     <Layout title="Profile">
       <Grid container spacing={5}>
         <Grid item md={3} xs={12}>
-          <Card className={classes.user_profile_card}>
+          <Card className={classes.user_select}>
             <List>
               <NexLink href="/profile" passHref>
                 <ListItem selected button component="a">
