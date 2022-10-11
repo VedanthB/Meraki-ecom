@@ -251,5 +251,13 @@ const useStyles = makeStyles({
   admin_card_grid: {
     marginBottom: "2.5rem",
   },
+
+  // admin orders
+  admin_orders_table: {
+    color: "#0f172a",
+    backgroundColor: "#ecfeff",
+    padding: "1rem",
+  },
+  admin_orders_heading: {},
 });
 export default useStyles;

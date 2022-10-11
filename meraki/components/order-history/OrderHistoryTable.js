@@ -1,6 +1,6 @@
 /* eslint-disable no-nested-ternary */
 import React from "react";
-import NexLink from "next/link";
+import NextLink from "next/link";
 import {
   CircularProgress,
   List,
@@ -106,14 +106,14 @@ function OrderHistoryTable({ loading, error, orders }) {
                           : "not delivered"}
                       </TableCell>
                       <TableCell align="center">
-                        <NexLink href={`/order/${order._id}`} passHref>
+                        <NextLink href={`/order/${order._id}`} passHref>
                           <Button
                             variant="solid"
                             className={classes.btn_primary}
                           >
                             Details
                           </Button>
-                        </NexLink>
+                        </NextLink>
                       </TableCell>
                     </TableRow>
                   ))}

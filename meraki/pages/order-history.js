@@ -2,7 +2,7 @@
 import axios from "axios";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
-import NexLink from "next/link";
+import NextLink from "next/link";
 import React, { useEffect, useReducer } from "react";
 import { Grid, List, ListItem, Card, ListItemText } from "@material-ui/core";
 import { getError, useStyles } from "../utils";
@@ -57,16 +57,16 @@ function OrderHistory() {
         <Grid item md={3} xs={12}>
           <Card className={classes.user_select}>
             <List>
-              <NexLink href="/profile" passHref>
+              <NextLink href="/profile" passHref>
                 <ListItem button component="a">
                   <ListItemText primary="User Profile" />
                 </ListItem>
-              </NexLink>
-              <NexLink href="/order-history" passHref>
+              </NextLink>
+              <NextLink href="/order-history" passHref>
                 <ListItem selected button component="a">
                   <ListItemText primary="Order History" />
                 </ListItem>
-              </NexLink>
+              </NextLink>
             </List>
           </Card>
         </Grid>

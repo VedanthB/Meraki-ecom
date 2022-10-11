@@ -142,13 +142,15 @@ function OrderSummary({
             {isPending ? (
               <CircularProgress />
             ) : (
-              <div className={classes.fullWidth}>
-                <PayPalButtons
-                  createOrder={createOrder}
-                  onApprove={onApprove}
-                  onError={onError}
-                />
-              </div>
+              !userInfo.isAdmin && (
+                <div className={classes.fullWidth}>
+                  <PayPalButtons
+                    createOrder={createOrder}
+                    onApprove={onApprove}
+                    onError={onError}
+                  />
+                </div>
+              )
             )}
           </ListItem>
         )}
