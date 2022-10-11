@@ -18,7 +18,7 @@ import {
 } from "@material-ui/core";
 import { useRouter } from "next/router";
 import { useStore } from "../context";
-import { useStyles } from "../utils";
+import { getError, useStyles } from "../utils";
 
 function RegisterPage() {
   const {
@@ -55,10 +55,7 @@ function RegisterPage() {
       Cookies.set("userInfo", data);
       router.push(redirect || "/");
     } catch (err) {
-      enqueueSnackbar(
-        err.response.data ? err.response.data.message : err.message,
-        { variant: "error" },
-      );
+      enqueueSnackbar(getError(err), { variant: "error" });
     }
   };
   return (

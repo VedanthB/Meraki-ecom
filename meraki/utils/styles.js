@@ -210,5 +210,27 @@ const useStyles = makeStyles({
     color: "#0f172a",
     backgroundColor: "#ecfeff",
   },
+
+  // user profile
+  user_profile_card: {
+    marginTop: "1rem",
+    padding: "1rem",
+    color: "#0f172a",
+    backgroundColor: "#ecfeff",
+  },
+  user_profile_form: {
+    marginTop: "1rem",
+    width: "100%",
+    padding: "2rem",
+    borderRadius: "1rem",
+    border: "1px solid",
+  },
+  user_profile_heading_container: {
+    display: "flex",
+    justifyContent: "center",
+  },
+  user_profile_heading: {
+    fontSize: "2rem",
+  },
 });
 export default useStyles;
