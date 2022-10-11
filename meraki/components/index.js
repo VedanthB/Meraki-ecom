@@ -11,6 +11,7 @@ import RegisterPage from "./RegisterPage";
 import ShippingPage from "./ShippingPage";
 import PaymentPage from "./PaymentPage";
 import PlaceOrderPage from "./Place-order-page/PlaceOrderPage";
+import OrderDetailsPage from "./order-details-page/OrderDetailsPage";
 
 export {
   Layout,
@@ -25,4 +26,5 @@ export {
   ShippingPage,
   PaymentPage,
   PlaceOrderPage,
+  OrderDetailsPage,
 };
