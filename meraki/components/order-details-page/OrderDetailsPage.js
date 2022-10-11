@@ -1,10 +1,3 @@
-/* eslint-disable react/jsx-no-bind */
-/* eslint-disable no-shadow */
-/* eslint-disable func-names */
-/* eslint-disable prefer-arrow-callback */
-/* eslint-disable no-nested-ternary */
-/* eslint-disable consistent-return */
-
 import React, { useEffect, useReducer } from "react";
 import { usePayPalScriptReducer } from "@paypal/react-paypal-js";
 import { useRouter } from "next/router";

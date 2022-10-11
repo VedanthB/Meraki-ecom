@@ -1,4 +1,3 @@
-/* eslint-disable no-shadow */
 /* eslint-disable no-alert */
 import React from "react";
 import axios from "axios";
