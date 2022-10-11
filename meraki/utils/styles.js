@@ -258,10 +258,26 @@ const useStyles = makeStyles({
     backgroundColor: "#ecfeff",
     padding: "1rem",
   },
-  admin_orders_heading: {},
+  admin_orders_heading: {
+    fontSize: "1.5rem",
+  },
   deliver_btn_container: {
     display: "flex",
     flexDirection: "column",
+  },
+
+  // admin products
+  admin_products_heading: {
+    fontSize: "1.5rem",
+  },
+  admin_products_table: {
+    color: "#0f172a",
+    backgroundColor: "#ecfeff",
+    padding: "1rem",
+  },
+  admin_products_table_icons: {
+    fontSize: "1.2rem",
+    color: "#155e75",
   },
 });
 export default useStyles;

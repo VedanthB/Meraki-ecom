@@ -14,14 +14,14 @@ import {
 } from "@material-ui/core";
 import { useStore } from "../../context";
 import { getError, useStyles } from "../../utils";
-import { Layout, NoOrders, OrdersTable } from "../../components";
+import { Layout, ProductsTable } from "../../components";
 
 function reducer(state, action) {
   switch (action.type) {
     case "FETCH_REQUEST":
       return { ...state, loading: true, error: "" };
     case "FETCH_SUCCESS":
-      return { ...state, loading: false, orders: action.payload, error: "" };
+      return { ...state, loading: false, products: action.payload, error: "" };
     case "FETCH_FAIL":
       return { ...state, loading: false, error: action.payload };
     default:
@@ -35,9 +35,9 @@ function AdminDashboard() {
   const classes = useStyles();
   const { userInfo } = state;
 
-  const [{ loading, error, orders }, dispatch] = useReducer(reducer, {
+  const [{ loading, error, products }, dispatch] = useReducer(reducer, {
     loading: true,
-    orders: [],
+    products: [],
     error: "",
   });
 
@@ -48,7 +48,7 @@ function AdminDashboard() {
     const fetchData = async () => {
       try {
         dispatch({ type: "FETCH_REQUEST" });
-        const { data } = await axios.get(`/api/admin/orders`, {
+        const { data } = await axios.get(`/api/admin/products`, {
           headers: { authorization: `Bearer ${userInfo.token}` },
         });
         dispatch({ type: "FETCH_SUCCESS", payload: data });
@@ -59,10 +59,10 @@ function AdminDashboard() {
     fetchData();
   }, []);
   return (
-    <Layout title="Orders">
+    <Layout title="Products">
       <Grid container spacing={5}>
         <Grid item md={3} xs={12}>
-          <Card>
+          <Card className={classes.section}>
             <List>
               <NextLink href="/admin/dashboard" passHref>
                 <ListItem button component="a">
@@ -70,12 +70,12 @@ function AdminDashboard() {
                 </ListItem>
               </NextLink>
               <NextLink href="/admin/orders" passHref>
-                <ListItem selected button component="a">
+                <ListItem button component="a">
                   <ListItemText primary="Orders" />
                 </ListItem>
               </NextLink>
               <NextLink href="/admin/products" passHref>
-                <ListItem button component="a">
+                <ListItem selected button component="a">
                   <ListItemText primary="Products" />
                 </ListItem>
               </NextLink>
@@ -83,29 +83,25 @@ function AdminDashboard() {
           </Card>
         </Grid>
         <Grid item md={9} xs={12}>
-          {orders.length === 0 ? (
-            <NoOrders />
-          ) : (
-            <Card className={classes.admin_orders_table}>
-              <List>
-                <ListItem>
-                  <Typography className={classes.admin_orders_heading}>
-                    Orders
-                  </Typography>
-                </ListItem>
+          <Card className={classes.admin_products_table}>
+            <List>
+              <ListItem>
+                <Typography className={classes.admin_products_heading}>
+                  Products
+                </Typography>
+              </ListItem>
 
-                <ListItem>
-                  {loading ? (
-                    <CircularProgress />
-                  ) : error ? (
-                    <Typography className={classes.error}>{error}</Typography>
-                  ) : (
-                    <OrdersTable orders={orders} />
-                  )}
-                </ListItem>
-              </List>
-            </Card>
-          )}
+              <ListItem>
+                {loading ? (
+                  <CircularProgress />
+                ) : error ? (
+                  <Typography className={classes.error}>{error}</Typography>
+                ) : (
+                  <ProductsTable products={products} />
+                )}
+              </ListItem>
+            </List>
+          </Card>
         </Grid>
       </Grid>
     </Layout>
