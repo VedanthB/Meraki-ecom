@@ -15,6 +15,10 @@ import OrderDetailsPage from "./order-details-page/OrderDetailsPage";
 import OrderHistoryTable from "./order-history/OrderHistoryTable";
 import NoOrderHistory from "./order-history/NoOrderHistory";
 import UserProfileForm from "./UserProfileForm";
+import AdminCardGrid from "./admin/dashboard/AdminCardGrid";
+import AdminChart from "./admin/dashboard/AdminChart";
+import NoOrders from "./admin/orders/NoOrders";
+import OrdersTable from "./admin/orders/OrdersTable";
 
 export {
   Layout,
@@ -33,4 +37,8 @@ export {
   OrderHistoryTable,
   NoOrderHistory,
   UserProfileForm,
+  AdminCardGrid,
+  AdminChart,
+  NoOrders,
+  OrdersTable,
 };

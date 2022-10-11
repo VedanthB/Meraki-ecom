@@ -3,7 +3,7 @@
 import useStyles from "./styles";
 import data from "./data";
 import db from "./db";
-import { signToken, isAuth } from "./auth";
+import { signToken, isAuth, isAdmin } from "./auth";
 import { getError, onError } from "./error";
 
-export { useStyles, data, db, signToken, isAuth, getError, onError };
+export { useStyles, data, db, signToken, isAuth, isAdmin, getError, onError };

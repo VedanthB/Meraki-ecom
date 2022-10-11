@@ -203,6 +203,10 @@ const useStyles = makeStyles({
     justifyContent: "center",
   },
 
+  // user select
+  user_select: {
+    marginTop: "1rem",
+  },
   // order history
   order_history_cards: {
     marginTop: "1rem",
@@ -231,6 +235,33 @@ const useStyles = makeStyles({
   },
   user_profile_heading: {
     fontSize: "2rem",
+  },
+
+  // admin select
+  admin_select: {
+    marginTop: "1rem",
+  },
+
+  // admin dashboard
+  admin_dashboard_cards: {
+    color: "#0f172a",
+    backgroundColor: "#ecfeff",
+    borderRadius: "0.5rem",
+  },
+  admin_card_grid: {
+    marginBottom: "2.5rem",
+  },
+
+  // admin orders
+  admin_orders_table: {
+    color: "#0f172a",
+    backgroundColor: "#ecfeff",
+    padding: "1rem",
+  },
+  admin_orders_heading: {},
+  deliver_btn_container: {
+    display: "flex",
+    flexDirection: "column",
   },
 });
 export default useStyles;

@@ -13,7 +13,9 @@ function PaymentDetails({ paymentMethod, isPaid, paidAt }) {
           </Typography>
         </ListItem>
 
-        <ListItem>Status: {isPaid ? `paid at ${paidAt}` : "not paid"}</ListItem>
+        <ListItem>
+          Status: {isPaid ? `paid on ${paidAt.substring(0, 10)}` : "not paid"}
+        </ListItem>
       </List>
     </Card>
   );

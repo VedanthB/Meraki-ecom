@@ -2,10 +2,9 @@
 /* eslint-disable no-shadow */
 /* eslint-disable func-names */
 /* eslint-disable prefer-arrow-callback */
-import React, { useReducer } from "react";
-import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
-import { useSnackbar } from "notistack";
-import axios from "axios";
+import React from "react";
+import { PayPalButtons } from "@paypal/react-paypal-js";
+
 import {
   Grid,
   Card,
@@ -13,78 +12,26 @@ import {
   ListItem,
   Typography,
   CircularProgress,
+  Button,
 } from "@material-ui/core";
-import { getError, useStyles } from "../../utils";
-
-function reducer(state, action) {
-  switch (action.type) {
-    case "PAY_REQUEST":
-      return { ...state, loadingPay: true };
-    case "PAY_SUCCESS":
-      return { ...state, loadingPay: false, successPay: true };
-    case "PAY_FAIL":
-      return { ...state, loadingPay: false, errorPay: action.payload };
-    case "PAY_RESET":
-      return { ...state, loadingPay: false, successPay: false, errorPay: "" };
-    default:
-      return state;
-  }
-}
+import { useStyles } from "../../utils";
+import { useStore } from "../../context";
 
 function OrderSummary({
-  itemsPrice,
-  taxPrice,
-  shippingPrice,
-  totalPrice,
-  userInfo,
+  order,
+  isPending,
+  createOrder,
+  onApprove,
+  onError,
+  loadingDeliver,
+  deliverOrderHandler,
 }) {
-  const { enqueueSnackbar } = useSnackbar();
-  const [{ isPending }] = usePayPalScriptReducer();
-  const [{ order }, dispatch] = useReducer(reducer, {
-    loading: true,
-    order: {},
-    error: "",
-  });
-
-  const { isPaid } = order;
-
-  function createOrder(data, actions) {
-    return actions.order
-      .create({
-        purchase_units: [
-          {
-            amount: { value: totalPrice },
-          },
-        ],
-      })
-      .then((orderID) => {
-        return orderID;
-      });
-  }
-  function onApprove(data, actions) {
-    return actions.order.capture().then(async function (details) {
-      try {
-        dispatch({ type: "PAY_REQUEST" });
-        const { data } = await axios.put(
-          `/api/orders/${order._id}/pay`,
-          details,
-          {
-            headers: { authorization: `Bearer ${userInfo.token}` },
-          },
-        );
-        dispatch({ type: "PAY_SUCCESS", payload: data });
-        enqueueSnackbar("Order is paid", { variant: "success" });
-      } catch (err) {
-        dispatch({ type: "PAY_FAIL", payload: getError(err) });
-        enqueueSnackbar(getError(err), { variant: "error" });
-      }
-    });
-  }
-
-  function onError(err) {
-    enqueueSnackbar(getError(err), { variant: "error" });
-  }
   const classes = useStyles();
+  const { state } = useStore();
+  const { userInfo } = state;
+
+  const { isPaid, itemsPrice, taxPrice, shippingPrice, totalPrice } = order;
+
   return (
     <Card className={classes.order_detail_cards}>
       <List>
@@ -142,13 +89,32 @@ function OrderSummary({
             {isPending ? (
               <CircularProgress />
             ) : (
-              <div className={classes.fullWidth}>
-                <PayPalButtons
-                  createOrder={createOrder}
-                  onApprove={onApprove}
-                  onError={onError}
-                />
-              </div>
+              !userInfo?.isAdmin && (
+                <div className={classes.fullWidth}>
+                  <PayPalButtons
+                    createOrder={createOrder}
+                    onApprove={onApprove}
+                    onError={onError}
+                  />
+                </div>
+              )
+            )}
+          </ListItem>
+        )}
+
+        {userInfo.isAdmin && order.isPaid && !order.isDelivered && (
+          <ListItem className={classes.deliver_btn_container}>
+            {loadingDeliver ? (
+              <CircularProgress />
+            ) : (
+              <Button
+                fullWidth
+                variant="contained"
+                color="primary"
+                onClick={deliverOrderHandler}
+              >
+                Deliver Order
+              </Button>
             )}
           </ListItem>
         )}
