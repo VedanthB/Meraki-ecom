@@ -18,7 +18,7 @@ import {
   Link,
 } from "@material-ui/core";
 import NextLink from "next/link";
-import { useStyles } from "../utils";
+import { getError, useStyles } from "../utils";
 import { useStore } from "../context";
 
 function LoginPage() {
@@ -52,10 +52,7 @@ function LoginPage() {
       Cookies.set("userInfo", JSON.stringify(data));
       router.push(redirect || "/");
     } catch (err) {
-      enqueueSnackbar(
-        err.response.data ? err.response.data.message : err.message,
-        { variant: "error" },
-      );
+      enqueueSnackbar(getError(err), { variant: "error" });
     }
   };
 

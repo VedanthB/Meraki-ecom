@@ -53,7 +53,7 @@ function OrderHistory() {
   }, []);
   return (
     <Layout title="Order History">
-      <Grid container spacing={3}>
+      <Grid container spacing={5}>
         <Grid item md={3} xs={12}>
           <Card className={classes.order_history_cards}>
             <List>
@@ -63,7 +63,7 @@ function OrderHistory() {
                 </ListItem>
               </NexLink>
               <NexLink href="/order-history" passHref>
-                <ListItem selected button component="a">
+                <ListItem button component="a">
                   <ListItemText primary="Order History" />
                 </ListItem>
               </NexLink>

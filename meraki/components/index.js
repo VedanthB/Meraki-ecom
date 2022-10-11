@@ -14,6 +14,7 @@ import PlaceOrderPage from "./Place-order-page/PlaceOrderPage";
 import OrderDetailsPage from "./order-details-page/OrderDetailsPage";
 import OrderHistoryTable from "./order-history/OrderHistoryTable";
 import NoOrderHistory from "./order-history/NoOrderHistory";
+import UserProfileForm from "./UserProfileForm";
 
 export {
   Layout,
@@ -31,4 +32,5 @@ export {
   OrderDetailsPage,
   OrderHistoryTable,
   NoOrderHistory,
+  UserProfileForm,
 };
