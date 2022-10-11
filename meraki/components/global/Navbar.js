@@ -84,7 +84,6 @@ export default function NavBar() {
                 keepMounted
                 open={Boolean(anchorEl)}
                 onClose={loginMenuCloseHandler}
-                backgroundColor="black"
               >
                 <MenuItem onClick={loginMenuCloseHandler}>Profile</MenuItem>
                 <MenuItem onClick={loginMenuCloseHandler}>My account</MenuItem>

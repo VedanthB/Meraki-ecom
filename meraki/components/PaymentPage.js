@@ -22,7 +22,9 @@ export default function PaymentPage() {
   const router = useRouter();
   const [paymentMethod, setPaymentMethod] = useState("");
   const { state, dispatch } = useStore();
-  const { shippingAddress } = state;
+  const {
+    cart: { shippingAddress },
+  } = state;
 
   useEffect(() => {
     if (!shippingAddress?.address) {
@@ -39,10 +41,13 @@ export default function PaymentPage() {
       enqueueSnackbar("Payment method is required", { variant: "error" });
     } else {
       dispatch({ type: "SAVE_PAYMENT_METHOD", payload: paymentMethod });
+
       Cookies.set("paymentMethod", paymentMethod);
+
       router.push("/placeorder");
     }
   };
+
   return (
     <div>
       <CheckoutWizard activeStep={1} />

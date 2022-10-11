@@ -24,19 +24,11 @@ function PlaceOrderTable() {
       <Table>
         <TableHead>
           <TableRow>
-            <TableCell className={classes.place_order_table_headings}>
-              Item
-            </TableCell>
-            <TableCell
-              align="center"
-              className={classes.place_order_table_headings}
-            >
+            <TableCell className={classes.table_headings}>Item</TableCell>
+            <TableCell align="center" className={classes.table_headings}>
               Quantity
             </TableCell>
-            <TableCell
-              align="center"
-              className={classes.place_order_table_headings}
-            >
+            <TableCell align="center" className={classes.table_headings}>
               Price
             </TableCell>
           </TableRow>
@@ -59,22 +51,16 @@ function PlaceOrderTable() {
                       width={50}
                       height={50}
                     />
-                    <Typography className={classes.place_order_table_headings}>
+                    <Typography className={classes.table_headings}>
                       {item.name}
                     </Typography>
                   </div>
                 </NextLink>
               </TableCell>
-              <TableCell
-                align="center"
-                className={classes.place_order_table_headings}
-              >
+              <TableCell align="center" className={classes.table_headings}>
                 <Typography>{item.quantity}</Typography>
               </TableCell>
-              <TableCell
-                align="center"
-                className={classes.place_order_table_headings}
-              >
+              <TableCell align="center" className={classes.table_headings}>
                 <Typography>Rs.{item.price}</Typography>
               </TableCell>
             </TableRow>
