@@ -103,16 +103,19 @@ function OrderSummary({
         )}
 
         {userInfo.isAdmin && order.isPaid && !order.isDelivered && (
-          <ListItem>
-            {loadingDeliver && <CircularProgress />}
-            <Button
-              fullWidth
-              variant="contained"
-              color="primary"
-              onClick={deliverOrderHandler}
-            >
-              Deliver Order
-            </Button>
+          <ListItem className={classes.deliver_btn_container}>
+            {loadingDeliver ? (
+              <CircularProgress />
+            ) : (
+              <Button
+                fullWidth
+                variant="contained"
+                color="primary"
+                onClick={deliverOrderHandler}
+              >
+                Deliver Order
+              </Button>
+            )}
           </ListItem>
         )}
       </List>

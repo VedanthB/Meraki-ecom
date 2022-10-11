@@ -259,5 +259,9 @@ const useStyles = makeStyles({
     padding: "1rem",
   },
   admin_orders_heading: {},
+  deliver_btn_container: {
+    display: "flex",
+    flexDirection: "column",
+  },
 });
 export default useStyles;
