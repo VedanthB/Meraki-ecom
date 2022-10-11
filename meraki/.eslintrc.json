@@ -16,21 +16,31 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": ["react", "prettier"],
+  "plugins": [
+    "react",
+    "prettier"
+  ],
   "rules": {
     "react/react-in-jsx-scope": "off",
     "react/prop-types": "off",
     "react/jsx-filename-extension": [
       1,
       {
-        "extensions": [".js", ".jsx"]
+        "extensions": [
+          ".js",
+          ".jsx"
+        ]
       }
     ],
-    "arrow-body-style": ["off"],
+    "arrow-body-style": [
+      "off"
+    ],
     "no-underscore-dangle": [
       "off",
       {
-        "allow": ["__REDUX_DEVTOOLS_EXTENSION_COMPOSE__"],
+        "allow": [
+          "__REDUX_DEVTOOLS_EXTENSION_COMPOSE__"
+        ],
         "allowAfterThis": false,
         "allowAfterSuper": false,
         "allowAfterThisConstructor": false,
@@ -44,8 +54,12 @@
         "defaultAssignment": false
       }
     ],
-    "no-nested-ternary": ["off"],
-    "react/jsx-props-no-spreading": ["off"],
+    "no-nested-ternary": [
+      "off"
+    ],
+    "react/jsx-props-no-spreading": [
+      "off"
+    ],
     "consistent-return": [
       "off",
       {
@@ -84,7 +98,15 @@
         "ignoreDOMComponents": true
       }
     ],
-    "react/no-unescaped-entities": ["off"]
+    "react/no-unescaped-entities": [
+      "off"
+    ],
+    "no-else-return": [
+      "off",
+      {
+        "allowElseIf": false
+      }
+    ]
   },
   "settings": {
     "react": {

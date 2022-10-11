@@ -279,5 +279,21 @@ const useStyles = makeStyles({
     fontSize: "1.2rem",
     color: "#155e75",
   },
+
+  // edit product page
+  edit_product_container: {
+    width: "100%",
+    display: "flex",
+    justifyContent: "center",
+  },
+  edit_product_form: {
+    width: "100%",
+    border: "1px solid",
+    padding: "2rem",
+    borderRadius: "1rem",
+  },
+  edit_product_form_heading: {
+    fontSize: "1.7rem",
+  },
 });
 export default useStyles;
