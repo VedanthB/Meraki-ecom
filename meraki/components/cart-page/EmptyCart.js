@@ -25,7 +25,7 @@ function EmptyCart() {
             justifyContent: "center",
           }}
         >
-          <img src="https://res.cloudinary.com/dgl5z5ozi/image/upload/v1665324512/Meraki-ecom/cart-page-dark-mode2_gjor5q.gif" />
+          <img src="https://res.cloudinary.com/dgl5z5ozi/image/upload/v1665324574/Meraki-ecom/cart-page-dark-mode_pswpgq.gif" />
         </div>
       ) : (
         <div
