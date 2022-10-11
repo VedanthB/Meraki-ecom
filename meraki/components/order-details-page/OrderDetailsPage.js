@@ -14,7 +14,6 @@ import {
   Typography,
 } from "@material-ui/core";
 import { getError, useStyles } from "../../utils";
-import CheckoutWizard from "../CheckoutWizard";
 import { useStore } from "../../context";
 import OrderDetailsTable from "./OrderDetailsTable";
 import OrderSummary from "./OrderSummary";
@@ -105,7 +104,6 @@ function OrderDetailsPage({ params }) {
 
   return (
     <div>
-      <CheckoutWizard activeStep={3} />
       <Typography className={classes.order_id}>Order: {orderId}</Typography>
       {loading ? (
         <CircularProgress />

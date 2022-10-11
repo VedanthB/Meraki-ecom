@@ -12,6 +12,8 @@ import ShippingPage from "./ShippingPage";
 import PaymentPage from "./PaymentPage";
 import PlaceOrderPage from "./Place-order-page/PlaceOrderPage";
 import OrderDetailsPage from "./order-details-page/OrderDetailsPage";
+import OrderHistoryTable from "./order-history/OrderHistoryTable";
+import NoOrderHistory from "./order-history/NoOrderHistory";
 
 export {
   Layout,
@@ -27,4 +29,6 @@ export {
   PaymentPage,
   PlaceOrderPage,
   OrderDetailsPage,
+  OrderHistoryTable,
+  NoOrderHistory,
 };

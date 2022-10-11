@@ -44,7 +44,7 @@ export default function PaymentPage() {
 
       Cookies.set("paymentMethod", paymentMethod);
 
-      router.push("/placeorder");
+      router.push("/place-order");
     }
   };
 

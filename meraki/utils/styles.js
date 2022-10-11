@@ -11,6 +11,13 @@ const useStyles = makeStyles({
   table_headings: {
     color: "#0f172a",
   },
+  selected_heading: {
+    fontSize: "3rem",
+  },
+  btn_primary: {
+    backgroundColor: "#0891b2",
+    color: "#ecfeff",
+  },
 
   // layout
   navbar: {
@@ -194,6 +201,14 @@ const useStyles = makeStyles({
     marginTop: "1rem",
     display: "flex",
     justifyContent: "center",
+  },
+
+  // order history
+  order_history_cards: {
+    marginTop: "1rem",
+    padding: "1rem",
+    color: "#0f172a",
+    backgroundColor: "#ecfeff",
   },
 });
 export default useStyles;
