@@ -181,9 +181,19 @@ const useStyles = makeStyles({
   order_details_heading: {
     fontSize: "1.3rem",
   },
+  order_details_heading_container: {
+    display: "flex",
+    justifyContent: "center",
+    marginBottom: "0.5rem",
+  },
   order_id: {
     fontSize: "1.3rem",
     marginTop: "1rem",
+  },
+  paypal_button_container: {
+    marginTop: "1rem",
+    display: "flex",
+    justifyContent: "center",
   },
 });
 export default useStyles;

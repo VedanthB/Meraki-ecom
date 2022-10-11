@@ -1,6 +1,8 @@
-/* eslint-disable consistent-return */
 /* eslint-disable no-nested-ternary */
+/* eslint-disable consistent-return */
+
 import React, { useEffect, useReducer } from "react";
+import { usePayPalScriptReducer } from "@paypal/react-paypal-js";
 import { useRouter } from "next/router";
 import axios from "axios";
 import {
@@ -34,16 +36,20 @@ function reducer(state, action) {
 
 function OrderDetailsPage({ params }) {
   const orderId = params?.id;
+  const [{ isPending }, paypalDispatch] = usePayPalScriptReducer();
   const classes = useStyles();
   const router = useRouter();
   const { state } = useStore();
   const { userInfo } = state;
 
-  const [{ loading, error, order }, dispatch] = useReducer(reducer, {
-    loading: true,
-    order: {},
-    error: "",
-  });
+  const [{ loading, error, order, successPay }, dispatch] = useReducer(
+    reducer,
+    {
+      loading: true,
+      order: {},
+      error: "",
+    },
+  );
 
   const {
     shippingAddress,
@@ -74,10 +80,28 @@ function OrderDetailsPage({ params }) {
         dispatch({ type: "FETCH_FAIL", payload: getError(err) });
       }
     };
-    if (!order._id || (order._id && order._id !== orderId)) {
+    if (!order._id || successPay || (order._id && order._id !== orderId)) {
       fetchOrder();
+      if (successPay) {
+        dispatch({ type: "PAY_RESET" });
+      }
+    } else {
+      const loadPaypalScript = async () => {
+        const { data: clientId } = await axios.get("/api/keys/paypal", {
+          headers: { authorization: `Bearer ${userInfo.token}` },
+        });
+        paypalDispatch({
+          type: "resetOptions",
+          value: {
+            "client-id": clientId,
+            currency: "USD",
+          },
+        });
+        paypalDispatch({ type: "setLoadingStatus", value: "pending" });
+      };
+      loadPaypalScript();
     }
-  }, [order]);
+  }, [order, successPay]);
 
   return (
     <div>
@@ -119,6 +143,9 @@ function OrderDetailsPage({ params }) {
               taxPrice={taxPrice}
               shippingPrice={shippingPrice}
               totalPrice={totalPrice}
+              isPaid={isPaid}
+              isPending={isPending}
+              userInfo={userInfo}
             />
           </Grid>
         </Grid>
