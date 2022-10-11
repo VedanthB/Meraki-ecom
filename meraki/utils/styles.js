@@ -295,5 +295,18 @@ const useStyles = makeStyles({
   edit_product_form_heading: {
     fontSize: "1.7rem",
   },
+  edit_product_btn: {
+    fontSize: "0.7rem",
+    backgroundColor: "#0891b2",
+    color: "#ecfeff",
+    "&:hover": {
+      backgroundColor: "#164e63",
+    },
+  },
+  edit_product_btn_container: {
+    display: "flex",
+    justifyContent: "end",
+    marginBottom: "0.5rem",
+  },
 });
 export default useStyles;

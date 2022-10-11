@@ -197,6 +197,16 @@ function ProductEdit({ params }) {
                   onSubmit={handleSubmit(submitHandler)}
                   className={classes.edit_product_form}
                 >
+                  <Container className={classes.edit_product_btn_container}>
+                    <Button
+                      component="label"
+                      className={classes.edit_product_btn}
+                    >
+                      Upload File
+                      <input type="file" onChange={uploadHandler} hidden />
+                    </Button>
+                    {loadingUpload && <CircularProgress />}
+                  </Container>
                   <List>
                     <ListItem>
                       <Controller
@@ -281,17 +291,6 @@ function ProductEdit({ params }) {
                           />
                         )}
                       />
-                    </ListItem>
-                    <ListItem>
-                      <Button
-                        variant="contained"
-                        component="label"
-                        size="small"
-                      >
-                        Upload File
-                        <input type="file" onChange={uploadHandler} hidden />
-                      </Button>
-                      {loadingUpload && <CircularProgress />}
                     </ListItem>
                     <ListItem>
                       <Controller
