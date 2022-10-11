@@ -1,6 +1,5 @@
 /* eslint-disable no-alert */
 import NextLink from "next/link";
-import { useRouter } from "next/router";
 import {
   Grid,
   Card,
@@ -16,8 +15,6 @@ import { useStyles } from "../utils";
 import { useStore } from "../context";
 
 export default function HomePage({ products }) {
-  const router = useRouter();
-
   const classes = useStyles();
 
   const { state, dispatch } = useStore();
@@ -31,7 +28,6 @@ export default function HomePage({ products }) {
       return;
     }
     dispatch({ type: "CART_ADD_ITEM", payload: { ...product, quantity } });
-    router.push("/cart");
   };
 
   return (

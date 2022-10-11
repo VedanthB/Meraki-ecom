@@ -18,12 +18,12 @@ import { useStore } from "../../context";
 function PlaceOrderSummary() {
   const classes = useStyles();
   const { state, dispatch } = useStore();
+
   const {
     userInfo,
-    cart: { cartItems },
-    shippingAddress,
-    paymentMethod,
+    cart: { cartItems, shippingAddress, paymentMethod },
   } = state;
+
   const router = useRouter();
 
   const round2 = (num) => Math.round(num * 100 + Number.EPSILON) / 100;
@@ -36,6 +36,7 @@ function PlaceOrderSummary() {
 
   const { closeSnackbar, enqueueSnackbar } = useSnackbar();
   const [loading, setLoading] = useState(false);
+
   const placeOrderHandler = async () => {
     closeSnackbar();
     try {
@@ -43,7 +44,7 @@ function PlaceOrderSummary() {
       const { data } = await axios.post(
         "/api/orders",
         {
-          orderOItems: cartItems,
+          orderItems: cartItems,
           shippingAddress,
           paymentMethod,
           itemsPrice,
@@ -58,8 +59,11 @@ function PlaceOrderSummary() {
         },
       );
       dispatch({ type: "CART_CLEAR" });
+
       Cookies.remove("cartItems");
+
       setLoading(false);
+
       router.push(`/order/${data._id}`);
     } catch (err) {
       setLoading(false);

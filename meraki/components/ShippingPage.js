@@ -24,7 +24,10 @@ export default function ShippingPage() {
   } = useForm();
   const router = useRouter();
   const { state, dispatch } = useStore();
-  const { userInfo, shippingAddress } = state;
+  const {
+    userInfo,
+    cart: { shippingAddress },
+  } = state;
 
   useEffect(() => {
     if (!userInfo) {

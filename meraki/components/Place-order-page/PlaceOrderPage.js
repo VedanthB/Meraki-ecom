@@ -16,8 +16,7 @@ function PlaceOrder() {
   const router = useRouter();
   const { state } = useStore();
   const {
-    cart: { cartItems, paymentMethod },
-    shippingAddress,
+    cart: { cartItems, paymentMethod, shippingAddress },
   } = state;
 
   useEffect(() => {

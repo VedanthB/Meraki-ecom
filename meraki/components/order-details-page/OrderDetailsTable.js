@@ -11,14 +11,10 @@ import {
   TableCell,
 } from "@material-ui/core";
 import { useStyles } from "../../utils";
-import { useStore } from "../../context";
 
-function PlaceOrderTable() {
+function OrderDetailsTable({ orderItems }) {
   const classes = useStyles();
-  const { state } = useStore();
-  const {
-    cart: { cartItems },
-  } = state;
+
   return (
     <TableContainer>
       <Table>
@@ -34,7 +30,7 @@ function PlaceOrderTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {cartItems.map((item) => (
+          {orderItems.map((item) => (
             <TableRow key={item._id}>
               <TableCell>
                 <NextLink href={`/product/${item.slug}`} passHref>
@@ -57,11 +53,15 @@ function PlaceOrderTable() {
                   </div>
                 </NextLink>
               </TableCell>
-              <TableCell align="center" className={classes.table_headings}>
-                <Typography>{item.quantity}</Typography>
+              <TableCell align="center">
+                <Typography className={classes.table_headings}>
+                  {item.quantity}
+                </Typography>
               </TableCell>
-              <TableCell align="center" className={classes.table_headings}>
-                <Typography>Rs.{item.price}</Typography>
+              <TableCell align="center">
+                <Typography className={classes.table_headings}>
+                  Rs.{item.price}
+                </Typography>
               </TableCell>
             </TableRow>
           ))}
@@ -71,4 +71,4 @@ function PlaceOrderTable() {
   );
 }
 
-export default PlaceOrderTable;
+export default OrderDetailsTable;
