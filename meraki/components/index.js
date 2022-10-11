@@ -19,6 +19,7 @@ import AdminCardGrid from "./admin/dashboard/AdminCardGrid";
 import AdminChart from "./admin/dashboard/AdminChart";
 import NoOrders from "./admin/orders/NoOrders";
 import OrdersTable from "./admin/orders/OrdersTable";
+import ProductsTable from "./admin/products/ProductsTable";
 
 export {
   Layout,
@@ -41,4 +42,5 @@ export {
   AdminChart,
   NoOrders,
   OrdersTable,
+  ProductsTable,
 };

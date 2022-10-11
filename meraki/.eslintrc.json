@@ -43,7 +43,48 @@
       {
         "defaultAssignment": false
       }
-    ]
+    ],
+    "no-nested-ternary": ["off"],
+    "react/jsx-props-no-spreading": ["off"],
+    "consistent-return": [
+      "off",
+      {
+        "treatUndefinedAsUnspecified": false
+      }
+    ],
+    "no-shadow": [
+      "off",
+      {
+        "builtinGlobals": false,
+        "hoist": "functions",
+        "allow": null
+      }
+    ],
+    "prefer-arrow-callback": [
+      "off",
+      {
+        "allowNamedFunctions": false,
+        "allowUnboundThis": true
+      }
+    ],
+    "func-names": [
+      "off",
+      null,
+      {
+        "generators": null
+      }
+    ],
+    "react/jsx-no-bind": [
+      "off",
+      {
+        "ignoreRefs": true,
+        "allowArrowFunctions": true,
+        "allowFunctions": false,
+        "allowBind": false,
+        "ignoreDOMComponents": true
+      }
+    ],
+    "react/no-unescaped-entities": ["off"]
   },
   "settings": {
     "react": {
