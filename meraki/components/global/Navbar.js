@@ -92,18 +92,19 @@ export default function NavBar() {
                 <MenuItem onClick={(e) => loginMenuCloseHandler(e, "/profile")}>
                   Profile
                 </MenuItem>
-                <MenuItem
-                  onClick={(e) => loginMenuCloseHandler(e, "/order-history")}
-                >
-                  Order History
-                </MenuItem>
-                {userInfo.isAdmin && (
+                {userInfo.isAdmin ? (
                   <MenuItem
                     onClick={(e) =>
                       loginMenuCloseHandler(e, "/admin/dashboard")
                     }
                   >
                     Admin Dashboard
+                  </MenuItem>
+                ) : (
+                  <MenuItem
+                    onClick={(e) => loginMenuCloseHandler(e, "/order-history")}
+                  >
+                    Order History
                   </MenuItem>
                 )}
                 <MenuItem onClick={logoutClickHandler}>Logout</MenuItem>

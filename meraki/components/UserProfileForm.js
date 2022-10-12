@@ -1,8 +1,8 @@
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
-
 import { List, ListItem, Button, TextField } from "@material-ui/core";
 import { useStyles } from "../utils";
+import { useStore } from "../context";
 
 function UserProfileForm({ submitHandler }) {
   const classes = useStyles();
@@ -11,6 +11,10 @@ function UserProfileForm({ submitHandler }) {
     control,
     formState: { errors },
   } = useForm();
+
+  const {
+    state: { userInfo },
+  } = useStore();
 
   return (
     <form
@@ -22,7 +26,7 @@ function UserProfileForm({ submitHandler }) {
           <Controller
             name="name"
             control={control}
-            defaultValue=""
+            defaultValue={userInfo?.name ? userInfo?.name : ""}
             rules={{
               required: true,
               minLength: 2,
@@ -51,7 +55,7 @@ function UserProfileForm({ submitHandler }) {
           <Controller
             name="email"
             control={control}
-            defaultValue=""
+            defaultValue={userInfo?.email ? userInfo?.email : ""}
             rules={{
               required: true,
               pattern: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
@@ -92,7 +96,7 @@ function UserProfileForm({ submitHandler }) {
                 variant="outlined"
                 fullWidth
                 id="password"
-                label="Password"
+                label="New Password"
                 inputProps={{ type: "password" }}
                 error={Boolean(errors.password)}
                 helperText={
@@ -119,7 +123,7 @@ function UserProfileForm({ submitHandler }) {
                 variant="outlined"
                 fullWidth
                 id="confirmPassword"
-                label="Confirm Password"
+                label="Confirm New Password"
                 inputProps={{ type: "password" }}
                 error={Boolean(errors.confirmPassword)}
                 helperText={

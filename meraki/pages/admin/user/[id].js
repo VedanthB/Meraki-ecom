@@ -114,7 +114,7 @@ function UserEdit({ params }) {
     }
   };
   return (
-    <Layout title={`Edit User ${userId}`}>
+    <Layout>
       <Grid container spacing={5}>
         <Grid item md={3} xs={12}>
           <Card className={classes.section}>
