@@ -1,5 +1,4 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import NextLink from "next/link";
 import { Grid, Typography } from "@material-ui/core";
 import dynamic from "next/dynamic";
 import { useStore } from "../context";

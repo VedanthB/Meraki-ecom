@@ -1,5 +1,4 @@
 /* eslint-disable react/jsx-no-constructed-context-values */
-/* eslint-disable react/destructuring-assignment */
 import Cookies from "js-cookie";
 import { createContext, useContext, useReducer } from "react";
 
