@@ -1,7 +1,3 @@
-/* eslint-disable react/jsx-no-bind */
-/* eslint-disable no-shadow */
-/* eslint-disable func-names */
-/* eslint-disable prefer-arrow-callback */
 import React from "react";
 import { PayPalButtons } from "@paypal/react-paypal-js";
 

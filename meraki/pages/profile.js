@@ -1,6 +1,3 @@
-/* eslint-disable consistent-return */
-/* eslint-disable react/jsx-props-no-spreading */
-/* eslint-disable no-nested-ternary */
 import axios from "axios";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";

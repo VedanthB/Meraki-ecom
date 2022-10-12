@@ -1,7 +1,4 @@
-/* eslint-disable react/jsx-props-no-spreading */
-/* eslint-disable no-nested-ternary */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-/* eslint-disable no-alert */
 import React, { useEffect } from "react";
 import NextLink from "next/link";
 import axios from "axios";

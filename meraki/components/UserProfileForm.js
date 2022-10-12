@@ -1,5 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
-/* eslint-disable no-nested-ternary */
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
 

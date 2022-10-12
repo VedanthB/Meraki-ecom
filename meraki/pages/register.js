@@ -1,4 +1,3 @@
-/* eslint-disable no-alert */
 import React from "react";
 import { Layout, RegisterPage } from "../components";
 

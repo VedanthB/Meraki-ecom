@@ -1,4 +1,3 @@
-/* eslint-disable no-nested-ternary */
 import axios from "axios";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
@@ -73,6 +72,11 @@ function AdminDashboard() {
               <NextLink href="/admin/orders" passHref>
                 <ListItem selected button component="a">
                   <ListItemText primary="Orders" />
+                </ListItem>
+              </NextLink>
+              <NextLink href="/admin/products" passHref>
+                <ListItem button component="a">
+                  <ListItemText primary="Products" />
                 </ListItem>
               </NextLink>
             </List>

@@ -1,8 +1,5 @@
-/* eslint-disable react/jsx-props-no-spreading */
-/* eslint-disable no-nested-ternary */
-/* eslint-disable no-alert */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-/* eslint-disable react/no-unescaped-entities */
+
 import React, { useEffect } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";

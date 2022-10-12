@@ -258,10 +258,55 @@ const useStyles = makeStyles({
     backgroundColor: "#ecfeff",
     padding: "1rem",
   },
-  admin_orders_heading: {},
+  admin_orders_heading: {
+    fontSize: "1.5rem",
+  },
   deliver_btn_container: {
     display: "flex",
     flexDirection: "column",
+  },
+
+  // admin products
+  admin_products_heading: {
+    fontSize: "1.5rem",
+  },
+  admin_products_table: {
+    color: "#0f172a",
+    backgroundColor: "#ecfeff",
+    padding: "1rem",
+  },
+  admin_products_table_icons: {
+    fontSize: "1.2rem",
+    color: "#155e75",
+  },
+
+  // edit product page
+  edit_product_container: {
+    width: "100%",
+    display: "flex",
+    justifyContent: "center",
+  },
+  edit_product_form: {
+    width: "100%",
+    border: "1px solid",
+    padding: "2rem",
+    borderRadius: "1rem",
+  },
+  edit_product_form_heading: {
+    fontSize: "1.7rem",
+  },
+  edit_product_btn: {
+    fontSize: "0.7rem",
+    backgroundColor: "#0891b2",
+    color: "#ecfeff",
+    "&:hover": {
+      backgroundColor: "#164e63",
+    },
+  },
+  edit_product_btn_container: {
+    display: "flex",
+    justifyContent: "end",
+    marginBottom: "0.5rem",
   },
 });
 export default useStyles;
