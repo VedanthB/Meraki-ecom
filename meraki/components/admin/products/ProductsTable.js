@@ -62,12 +62,12 @@ function ProductsTable({ products, deleteHandler }) {
               </TableCell>
               <TableCell align="center">
                 <NextLink href={`/admin/product/${product._id}`} passHref>
-                  <Button className={classes.admin_products_table_icons}>
+                  <Button className={classes.table_icons}>
                     <i className="fa-solid fa-pen-to-square" />
                   </Button>
                 </NextLink>{" "}
                 <Button
-                  className={classes.admin_products_table_icons}
+                  className={classes.table_icons}
                   onClick={() => deleteHandler(product._id)}
                 >
                   <i className="fa-solid fa-trash-can" />
