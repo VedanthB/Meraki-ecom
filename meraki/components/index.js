@@ -20,6 +20,7 @@ import AdminChart from "./admin/dashboard/AdminChart";
 import NoOrders from "./admin/orders/NoOrders";
 import OrdersTable from "./admin/orders/OrdersTable";
 import ProductsTable from "./admin/products/ProductsTable";
+import UserTable from "./admin/users/UserTable";
 
 export {
   Layout,
@@ -43,4 +44,5 @@ export {
   NoOrders,
   OrdersTable,
   ProductsTable,
+  UserTable,
 };
