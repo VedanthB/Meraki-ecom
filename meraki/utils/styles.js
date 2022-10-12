@@ -44,6 +44,7 @@ const useStyles = makeStyles({
   },
   nav_link: {
     fontSize: "1.6rem",
+    cursor: "pointer",
   },
   nav_btn: {
     fontSize: "1rem",
@@ -235,11 +236,6 @@ const useStyles = makeStyles({
   },
   user_profile_heading: {
     fontSize: "2rem",
-  },
-
-  // admin select
-  admin_select: {
-    marginTop: "1rem",
   },
 
   // table icons
