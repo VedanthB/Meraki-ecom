@@ -11,7 +11,7 @@ import {
 } from "@material-ui/core";
 import { useStyles } from "../../../utils";
 
-function ProductsTable({ products }) {
+function ProductsTable({ products, deleteHandler }) {
   const classes = useStyles();
   return (
     <TableContainer>
@@ -66,7 +66,10 @@ function ProductsTable({ products }) {
                     <i className="fa-solid fa-pen-to-square" />
                   </Button>
                 </NextLink>{" "}
-                <Button className={classes.admin_products_table_icons}>
+                <Button
+                  className={classes.admin_products_table_icons}
+                  onClick={() => deleteHandler(product._id)}
+                >
                   <i className="fa-solid fa-trash-can" />
                 </Button>
               </TableCell>
