@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-boolean-value */
 import { useEffect } from "react";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import { SnackbarProvider } from "notistack";
