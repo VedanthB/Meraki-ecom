@@ -49,7 +49,7 @@ function UserTable({ users, deleteHandler }) {
                 {user.isAdmin ? "YES" : "NO"}
               </TableCell>
               <TableCell align="center">
-                <NextLink href={`/admin/product/${user._id}`} passHref>
+                <NextLink href={`/admin/user/${user._id}`} passHref>
                   <Button className={classes.table_icons}>
                     <i className="fa-solid fa-pen-to-square" />
                   </Button>
