@@ -83,7 +83,7 @@ export default function Layout({ children }) {
           crossOrigin="anonymous"
           referrerPolicy="no-referrer"
         />
-        {/* <link rel="icon" href="/favicon.ico" /> */}
+        <link rel="icon" href="/favicon.png" />
       </Head>
 
       <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
