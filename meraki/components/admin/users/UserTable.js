@@ -1,5 +1,4 @@
 import React from "react";
-import NextLink from "next/link";
 import {
   Button,
   TableContainer,
@@ -9,9 +8,10 @@ import {
   TableCell,
   TableBody,
 } from "@material-ui/core";
+import NextLink from "next/link";
 import { useStyles } from "../../../utils";
 
-function ProductsTable({ products, deleteHandler }) {
+function UserTable({ users, deleteHandler }) {
   const classes = useStyles();
   return (
     <TableContainer>
@@ -25,50 +25,38 @@ function ProductsTable({ products, deleteHandler }) {
               NAME
             </TableCell>
             <TableCell align="center" className={classes.table_headings}>
-              PRICE
+              EMAIL
             </TableCell>
             <TableCell align="center" className={classes.table_headings}>
-              CATEGORY
-            </TableCell>
-            <TableCell align="center" className={classes.table_headings}>
-              COUNT
-            </TableCell>
-            <TableCell align="center" className={classes.table_headings}>
-              RATING
+              ADMIN
             </TableCell>
             <TableCell />
           </TableRow>
         </TableHead>
         <TableBody>
-          {products.map((product) => (
-            <TableRow key={product._id}>
-              <TableCell className={classes.table_headings}>
-                {product._id.substring(20, 24)}
+          {users.map((user) => (
+            <TableRow key={user._id}>
+              <TableCell align="center" className={classes.table_headings}>
+                {user._id.substring(20, 24)}
               </TableCell>
               <TableCell align="center" className={classes.table_headings}>
-                {product.name}
+                {user.name}
               </TableCell>
               <TableCell align="center" className={classes.table_headings}>
-                Rs.{product.price}
+                {user.email}
               </TableCell>
               <TableCell align="center" className={classes.table_headings}>
-                {product.category}
-              </TableCell>
-              <TableCell align="center" className={classes.table_headings}>
-                {product.countInStock}
-              </TableCell>
-              <TableCell align="center" className={classes.table_headings}>
-                {product.rating}
+                {user.isAdmin ? "YES" : "NO"}
               </TableCell>
               <TableCell align="center">
-                <NextLink href={`/admin/product/${product._id}`} passHref>
+                <NextLink href={`/admin/user/${user._id}`} passHref>
                   <Button className={classes.table_icons}>
                     <i className="fa-solid fa-pen-to-square" />
                   </Button>
                 </NextLink>{" "}
                 <Button
                   className={classes.table_icons}
-                  onClick={() => deleteHandler(product._id)}
+                  onClick={() => deleteHandler(user._id)}
                 >
                   <i className="fa-solid fa-trash-can" />
                 </Button>
@@ -81,4 +69,4 @@ function ProductsTable({ products, deleteHandler }) {
   );
 }
 
-export default ProductsTable;
+export default UserTable;

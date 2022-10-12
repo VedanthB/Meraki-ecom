@@ -44,6 +44,7 @@ const useStyles = makeStyles({
   },
   nav_link: {
     fontSize: "1.6rem",
+    cursor: "pointer",
   },
   nav_btn: {
     fontSize: "1rem",
@@ -237,11 +238,11 @@ const useStyles = makeStyles({
     fontSize: "2rem",
   },
 
-  // admin select
-  admin_select: {
-    marginTop: "1rem",
+  // table icons
+  table_icons: {
+    fontSize: "1.2rem",
+    color: "#155e75",
   },
-
   // admin dashboard
   admin_dashboard_cards: {
     color: "#0f172a",
@@ -275,10 +276,6 @@ const useStyles = makeStyles({
     backgroundColor: "#ecfeff",
     padding: "1rem",
   },
-  admin_products_table_icons: {
-    fontSize: "1.2rem",
-    color: "#155e75",
-  },
 
   // edit product page
   edit_product_container: {
@@ -307,6 +304,30 @@ const useStyles = makeStyles({
     display: "flex",
     justifyContent: "end",
     marginBottom: "0.5rem",
+  },
+
+  // admin users
+  users_table: {
+    color: "#0f172a",
+    backgroundColor: "#ecfeff",
+    padding: "1rem",
+  },
+  users_form_heading: {
+    fontSize: "1.5rem",
+  },
+  edit_user_container: {
+    width: "100%",
+    display: "flex",
+    justifyContent: "center",
+  },
+  edit_user_form: {
+    width: "100%",
+    border: "1px solid",
+    padding: "2rem",
+    borderRadius: "1rem",
+  },
+  edit_user_form_heading: {
+    fontSize: "1.7rem",
   },
 });
 export default useStyles;

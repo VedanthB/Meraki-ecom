@@ -37,7 +37,7 @@ function reducer(state, action) {
 
 ChartJS.register(CategoryScale, LinearScale, BarElement);
 
-function AdminDashboard() {
+function AdminOrders() {
   const { state } = useStore();
   const router = useRouter();
   const classes = useStyles();
@@ -87,6 +87,11 @@ function AdminDashboard() {
                   <ListItemText primary="Products" />
                 </ListItem>
               </NextLink>
+              <NextLink href="/admin/users" passHref>
+                <ListItem button component="a">
+                  <ListItemText primary="Users" />
+                </ListItem>
+              </NextLink>
             </List>
           </Card>
         </Grid>
@@ -111,4 +116,4 @@ function AdminDashboard() {
   );
 }
 
-export default dynamic(() => Promise.resolve(AdminDashboard), { ssr: false });
+export default dynamic(() => Promise.resolve(AdminOrders), { ssr: false });
